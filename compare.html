@@ -4,89 +4,291 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    html, body { margin:0; padding:0; background:#08080f; overflow:hidden; }
-  </style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Variables ─────────────────────────────────────────── */
+:root {
+  --bg:         #08080f;
+  --color-a:    #c9a84c;
+  --color-b:    #7ab3e0;
+  --border:     rgba(255,255,255,0.05);
+  --text-hi:    #f0f0f5;
+  --text-muted: rgba(255,255,255,0.28);
+  --text-faint: rgba(255,255,255,0.25);
+  --text-dim:   rgba(255,255,255,0.3);
+  --font:       'Space Grotesk', sans-serif;
+  --mono:       'DM Mono', monospace;
+  --ease:       cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+/* ── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); overflow: hidden; }
+
+/* ── Card ──────────────────────────────────────────────── */
+.card {
+  width: 100vw; height: 100vh;
+  background: var(--bg);
+  display: flex; flex-direction: column;
+  font-family: var(--font);
+  overflow: hidden;
+  animation: fade-in 0.4s var(--ease) both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Hero ──────────────────────────────────────────────── */
+.hero {
+  height: 195px;
+  background: linear-gradient(
+    90deg,
+    rgba(201,168,76,0.07) 0%, transparent 42%,
+    transparent 58%, rgba(122,179,224,0.07) 100%
+  );
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; flex-shrink: 0;
+  animation: slide-down 0.5s var(--ease) 0.05s both;
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Player panels ─────────────────────────────────────── */
+.player {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; padding: 12px 0;
+  transition: background 0.25s var(--ease);
+  cursor: default;
+}
+.player:hover { background: rgba(255,255,255,0.015); }
+
+/* ── Avatar ────────────────────────────────────────────── */
+.avatar {
+  width: 54px; height: 54px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.avatar-a {
+  background: rgba(201,168,76,0.12);
+  border: 2px solid rgba(201,168,76,0.35);
+  animation: pulse-a 3.2s ease-in-out 1s infinite;
+}
+.avatar-b {
+  background: rgba(122,179,224,0.12);
+  border: 2px solid rgba(122,179,224,0.35);
+  animation: pulse-b 3.2s ease-in-out 1.3s infinite;
+}
+.player:hover .avatar { transform: scale(1.1); }
+
+@keyframes pulse-a {
+  0%,100% { box-shadow: 0 0 0 0   rgba(201,168,76,0);    }
+  50%      { box-shadow: 0 0 0 7px rgba(201,168,76,0.14); }
+}
+@keyframes pulse-b {
+  0%,100% { box-shadow: 0 0 0 0   rgba(122,179,224,0);    }
+  50%      { box-shadow: 0 0 0 7px rgba(122,179,224,0.14); }
+}
+
+.initials-a { font-size: 15px; font-weight: 700; color: var(--color-a); }
+.initials-b { font-size: 15px; font-weight: 700; color: var(--color-b); }
+
+/* ── Player name / meta ────────────────────────────────── */
+.player-info { text-align: center; }
+.player-name {
+  font-size: 20px; font-weight: 700; color: var(--text-hi);
+  letter-spacing: 0.01em; text-transform: uppercase;
+  transition: letter-spacing 0.3s var(--ease);
+}
+.player:hover .player-name { letter-spacing: 0.05em; }
+.player-meta { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
+/* ── Stat cluster ──────────────────────────────────────── */
+.stat-group { display: flex; gap: 22px; }
+.stat-item  { text-align: center; }
+
+.stat-value {
+  font-family: var(--mono); font-size: 19px; font-weight: 500; line-height: 1;
+  transition: transform 0.2s var(--ease);
+}
+.stat-item:hover .stat-value { transform: scale(1.12); }
+
+.val-a  { color: var(--color-a); }
+.val-b  { color: var(--color-b); }
+.val-hi { color: var(--text-hi); }
+
+.stat-unit  { font-size: 11px; color: var(--text-dim); }
+.stat-label {
+  font-size: 9px; color: var(--text-faint);
+  text-transform: uppercase; letter-spacing: 0.12em; margin-top: 2px;
+}
+
+/* ── VS badge ──────────────────────────────────────────── */
+.vs-wrap {
+  flex-shrink: 0; display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+}
+.vs-badge {
+  width: 58px; height: 58px; border-radius: 50%;
+  border: 1.5px solid rgba(201,168,76,0.3);
+  background: rgba(0,0,0,0.4);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.45s var(--ease), border-color 0.3s;
+  cursor: default;
+}
+.vs-badge:hover { transform: rotate(180deg); border-color: rgba(201,168,76,0.65); }
+.vs-text { font-size: 13px; font-weight: 700; color: rgba(201,168,76,0.7); letter-spacing: 0.1em; }
+.vs-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.07); }
+
+/* ── Charts ────────────────────────────────────────────── */
+.charts-area { flex: 1; display: flex; min-height: 0; overflow: hidden; }
+
+.chart-panel {
+  flex: 1; display: flex; flex-direction: column; min-width: 0;
+  transition: background 0.25s var(--ease);
+  animation: slide-up 0.55s var(--ease) 0.12s both;
+}
+.chart-panel:nth-child(2) { animation-delay: 0.2s; border-left: 1px solid var(--border); }
+.chart-panel:hover { background: rgba(255,255,255,0.012); }
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.chart-header {
+  padding: 10px 20px 6px;
+  display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+}
+.chart-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.dot-a { background: var(--color-a); }
+.dot-b { background: var(--color-b); }
+.chart-title {
+  font-size: 11px; color: var(--text-dim);
+  font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;
+}
+
+.chart-svg-wrap {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  padding: 8px 16px; min-height: 0; overflow: hidden;
+  transition: opacity 0.25s var(--ease);
+}
+.chart-panel:hover .chart-svg-wrap { opacity: 0.92; }
+.chart-svg-wrap svg { display: block; max-height: 100%; }
+
+/* ── Stat bar row ──────────────────────────────────────── */
+.stat-bar-row {
+  height: 76px; border-top: 1px solid var(--border);
+  display: flex; align-items: center; flex-shrink: 0;
+  animation: slide-up 0.55s var(--ease) 0.28s both;
+}
+
+.stat-bar-cell {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 6px; height: 100%;
+  transition: background 0.2s var(--ease);
+}
+.stat-bar-cell:hover { background: rgba(255,255,255,0.025); }
+.stat-bar-cell + .stat-bar-cell { border-left: 1px solid var(--border); }
+
+.bar-values { display: flex; align-items: baseline; gap: 16px; }
+.bar-val-a { font-family: var(--mono); font-size: 18px; color: var(--color-a); font-weight: 500; }
+.bar-val-b { font-family: var(--mono); font-size: 18px; color: var(--color-b); font-weight: 500; }
+.bar-label {
+  font-size: 9px; color: rgba(255,255,255,0.2);
+  text-transform: uppercase; letter-spacing: 0.14em;
+}
+
+.bar-track { display: flex; align-items: center; gap: 2px; }
+.bar-a, .bar-b {
+  height: 3px;
+  transform-origin: left center;
+  animation: bar-grow 0.65s var(--ease) 0.45s both;
+}
+.bar-b { transform-origin: right center; animation-delay: 0.52s; }
+.bar-a { background: var(--color-a); border-radius: 2px 0 0 2px; }
+.bar-b { background: var(--color-b); border-radius: 0 2px 2px 0; }
+
+@keyframes bar-grow {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+</style>
 </head>
 <body>
-<div style="width:100vw;height:100vh;background:#08080f;display:flex;flex-direction:column;font-family:'Space Grotesk',sans-serif;overflow:hidden;">
+<div class="card">
 
-  <!-- ── Player Hero ── -->
-  <div style="height:195px;background:linear-gradient(90deg,rgba(201,168,76,0.07) 0%,transparent 42%,transparent 58%,rgba(122,179,224,0.07) 100%);border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;flex-shrink:0;">
+  <!-- ── Hero ── -->
+  <div class="hero">
 
-    <!-- Player A -->
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
-      <div style="width:54px;height:54px;border-radius:50%;background:rgba(201,168,76,0.12);border:2px solid rgba(201,168,76,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <span style="font-size:15px;font-weight:700;color:#c9a84c;">{{ playerAInitials }}</span>
+    <div class="player">
+      <div class="avatar avatar-a"><span class="initials-a">{{ playerAInitials }}</span></div>
+      <div class="player-info">
+        <div class="player-name">{{ playerAName }}</div>
+        <div class="player-meta">{{ playerAMeta }}</div>
       </div>
-      <div style="text-align:center;">
-        <div style="font-size:20px;font-weight:700;color:#f0f0f5;letter-spacing:0.01em;text-transform:uppercase;">{{ playerAName }}</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.28);margin-top:3px;">{{ playerAMeta }}</div>
-      </div>
-      <div style="display:flex;gap:22px;">
-        <div style="text-align:center;">
-          <div style="font-family:'DM Mono',monospace;font-size:19px;font-weight:500;color:#c9a84c;line-height:1;">{{ playerAFG }}<span style="font-size:11px;color:rgba(255,255,255,0.3);">%</span></div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.12em;margin-top:2px;">FG%</div>
+      <div class="stat-group">
+        <div class="stat-item">
+          <div class="stat-value val-a">{{ playerAFG }}<span class="stat-unit">%</span></div>
+          <div class="stat-label">FG%</div>
         </div>
-        <div style="text-align:center;">
-          <div style="font-family:'DM Mono',monospace;font-size:19px;font-weight:500;color:#f0f0f5;line-height:1;">{{ playerA3P }}<span style="font-size:11px;color:rgba(255,255,255,0.3);">%</span></div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.12em;margin-top:2px;">3PT%</div>
+        <div class="stat-item">
+          <div class="stat-value val-hi">{{ playerA3P }}<span class="stat-unit">%</span></div>
+          <div class="stat-label">3PT%</div>
         </div>
-        <div style="text-align:center;">
-          <div style="font-family:'DM Mono',monospace;font-size:19px;font-weight:500;color:#f0f0f5;line-height:1;">{{ playerAPPP }}</div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.12em;margin-top:2px;">PPP</div>
+        <div class="stat-item">
+          <div class="stat-value val-hi">{{ playerAPPP }}</div>
+          <div class="stat-label">PPP</div>
         </div>
       </div>
     </div>
 
-    <!-- VS Badge -->
-    <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:10px;">
-      <div style="width:58px;height:58px;border-radius:50%;border:1.5px solid rgba(201,168,76,0.3);background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;">
-        <span style="font-size:13px;font-weight:700;color:rgba(201,168,76,0.7);letter-spacing:0.1em;">VS</span>
-      </div>
-      <div style="width:1px;height:36px;background:rgba(255,255,255,0.07);"></div>
+    <div class="vs-wrap">
+      <div class="vs-badge"><span class="vs-text">VS</span></div>
+      <div class="vs-divider"></div>
     </div>
 
-    <!-- Player B -->
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
-      <div style="width:54px;height:54px;border-radius:50%;background:rgba(122,179,224,0.12);border:2px solid rgba(122,179,224,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <span style="font-size:15px;font-weight:700;color:#7ab3e0;">{{ playerBInitials }}</span>
+    <div class="player">
+      <div class="avatar avatar-b"><span class="initials-b">{{ playerBInitials }}</span></div>
+      <div class="player-info">
+        <div class="player-name">{{ playerBName }}</div>
+        <div class="player-meta">{{ playerBMeta }}</div>
       </div>
-      <div style="text-align:center;">
-        <div style="font-size:20px;font-weight:700;color:#f0f0f5;letter-spacing:0.01em;text-transform:uppercase;">{{ playerBName }}</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.28);margin-top:3px;">{{ playerBMeta }}</div>
-      </div>
-      <div style="display:flex;gap:22px;">
-        <div style="text-align:center;">
-          <div style="font-family:'DM Mono',monospace;font-size:19px;font-weight:500;color:#7ab3e0;line-height:1;">{{ playerBFG }}<span style="font-size:11px;color:rgba(255,255,255,0.3);">%</span></div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.12em;margin-top:2px;">FG%</div>
+      <div class="stat-group">
+        <div class="stat-item">
+          <div class="stat-value val-b">{{ playerBFG }}<span class="stat-unit">%</span></div>
+          <div class="stat-label">FG%</div>
         </div>
-        <div style="text-align:center;">
-          <div style="font-family:'DM Mono',monospace;font-size:19px;font-weight:500;color:#7ab3e0;line-height:1;">{{ playerB3P }}<span style="font-size:11px;color:rgba(255,255,255,0.3);">%</span></div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.12em;margin-top:2px;">3PT%</div>
+        <div class="stat-item">
+          <div class="stat-value val-b">{{ playerB3P }}<span class="stat-unit">%</span></div>
+          <div class="stat-label">3PT%</div>
         </div>
-        <div style="text-align:center;">
-          <div style="font-family:'DM Mono',monospace;font-size:19px;font-weight:500;color:#c9a84c;line-height:1;">{{ playerBPPP }}</div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.12em;margin-top:2px;">PPP</div>
+        <div class="stat-item">
+          <div class="stat-value val-a">{{ playerBPPP }}</div>
+          <div class="stat-label">PPP</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── Charts Area ── -->
-  <div style="flex:1;display:flex;min-height:0;overflow:hidden;">
+  <!-- ── Charts ── -->
+  <div class="charts-area">
 
-    <!-- Chart A -->
-    <div style="flex:1;display:flex;flex-direction:column;border-right:1px solid rgba(255,255,255,0.05);min-width:0;">
-      <div style="padding:10px 20px 6px;display:flex;align-items:center;gap:8px;flex-shrink:0;">
-        <div style="width:6px;height:6px;border-radius:50%;background:#c9a84c;flex-shrink:0;"></div>
-        <span style="font-size:11px;color:rgba(255,255,255,0.3);font-weight:500;text-transform:uppercase;letter-spacing:0.1em;">{{ playerAName }} — Shot Distribution</span>
+    <div class="chart-panel">
+      <div class="chart-header">
+        <div class="chart-dot dot-a"></div>
+        <span class="chart-title">{{ playerAName }} — Shot Distribution</span>
       </div>
-    <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:8px 16px;min-height:0;overflow:hidden;">
-      <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 410.4 374.4" xmlns="http://www.w3.org/2000/svg" version="1.1" style="display:block;max-height:100%;">
+      <div class="chart-svg-wrap">
+        <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 410.4 374.4" xmlns="http://www.w3.org/2000/svg" version="1.1" style="display:block;max-height:100%;">
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
@@ -336,18 +538,16 @@ z
   </clipPath>
  </defs>
 </svg>
-</div>
-
+      </div>
     </div>
 
-    <!-- Chart B -->
-    <div style="flex:1;display:flex;flex-direction:column;min-width:0;">
-      <div style="padding:10px 20px 6px;display:flex;align-items:center;gap:8px;flex-shrink:0;">
-        <div style="width:6px;height:6px;border-radius:50%;background:#7ab3e0;flex-shrink:0;"></div>
-        <span style="font-size:11px;color:rgba(255,255,255,0.3);font-weight:500;text-transform:uppercase;letter-spacing:0.1em;">{{ playerBName }} — Shot Distribution</span>
+    <div class="chart-panel">
+      <div class="chart-header">
+        <div class="chart-dot dot-b"></div>
+        <span class="chart-title">{{ playerBName }} — Shot Distribution</span>
       </div>
-    <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:8px 16px;min-height:0;overflow:hidden;">
-    <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 410.4 374.4" xmlns="http://www.w3.org/2000/svg" version="1.1" style="display:block;max-height:100%;">
+      <div class="chart-svg-wrap">
+        <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 410.4 374.4" xmlns="http://www.w3.org/2000/svg" version="1.1" style="display:block;max-height:100%;">
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
@@ -1137,59 +1337,58 @@ z
   </clipPath>
  </defs>
 </svg>
-</div>
-
+      </div>
     </div>
   </div>
 
-  <!-- ── Stat Comparison Bar ── -->
-  <div style="height:76px;border-top:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;flex-shrink:0;">
+  <!-- ── Stat Bar Row ── -->
+  <div class="stat-bar-row">
 
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border-right:1px solid rgba(255,255,255,0.05);height:100%;">
-      <div style="display:flex;align-items:baseline;gap:16px;">
-        <span style="font-family:'DM Mono',monospace;font-size:18px;color:#c9a84c;font-weight:500;">{{ playerAFG }}<span style="font-size:11px;color:rgba(255,255,255,0.3);">%</span></span>
-        <span style="font-size:9px;color:rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:0.14em;">FG%</span>
-        <span style="font-family:'DM Mono',monospace;font-size:18px;color:#7ab3e0;font-weight:500;">{{ playerBFG }}<span style="font-size:11px;color:rgba(255,255,255,0.3);">%</span></span>
+    <div class="stat-bar-cell">
+      <div class="bar-values">
+        <span class="bar-val-a">{{ playerAFG }}<span class="stat-unit">%</span></span>
+        <span class="bar-label">FG%</span>
+        <span class="bar-val-b">{{ playerBFG }}<span class="stat-unit">%</span></span>
       </div>
-      <div style="display:flex;align-items:center;gap:2px;">
-        <div style="height:3px;width:{{ barAFG }}px;background:#c9a84c;border-radius:2px 0 0 2px;"></div>
-        <div style="height:3px;width:{{ barBFG }}px;background:#7ab3e0;border-radius:0 2px 2px 0;"></div>
+      <div class="bar-track">
+        <div class="bar-a" style="width:{{ barAFG }}px;"></div>
+        <div class="bar-b" style="width:{{ barBFG }}px;"></div>
       </div>
     </div>
 
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border-right:1px solid rgba(255,255,255,0.05);height:100%;">
-      <div style="display:flex;align-items:baseline;gap:16px;">
-        <span style="font-family:'DM Mono',monospace;font-size:18px;color:#c9a84c;font-weight:500;">{{ playerA3P }}<span style="font-size:11px;color:rgba(255,255,255,0.3);">%</span></span>
-        <span style="font-size:9px;color:rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:0.14em;">3PT%</span>
-        <span style="font-family:'DM Mono',monospace;font-size:18px;color:#7ab3e0;font-weight:500;">{{ playerB3P }}<span style="font-size:11px;color:rgba(255,255,255,0.3);">%</span></span>
+    <div class="stat-bar-cell">
+      <div class="bar-values">
+        <span class="bar-val-a">{{ playerA3P }}<span class="stat-unit">%</span></span>
+        <span class="bar-label">3PT%</span>
+        <span class="bar-val-b">{{ playerB3P }}<span class="stat-unit">%</span></span>
       </div>
-      <div style="display:flex;align-items:center;gap:2px;">
-        <div style="height:3px;width:{{ barA3P }}px;background:#c9a84c;border-radius:2px 0 0 2px;"></div>
-        <div style="height:3px;width:{{ barB3P }}px;background:#7ab3e0;border-radius:0 2px 2px 0;"></div>
-      </div>
-    </div>
-
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border-right:1px solid rgba(255,255,255,0.05);height:100%;">
-      <div style="display:flex;align-items:baseline;gap:16px;">
-        <span style="font-family:'DM Mono',monospace;font-size:18px;color:#c9a84c;font-weight:500;">{{ playerAFGA }}<span style="font-size:11px;color:rgba(255,255,255,0.3);"> FGA</span></span>
-        <span style="font-size:9px;color:rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:0.14em;">Volume</span>
-        <span style="font-family:'DM Mono',monospace;font-size:18px;color:#7ab3e0;font-weight:500;">{{ playerBFGA }}<span style="font-size:11px;color:rgba(255,255,255,0.3);"> FGA</span></span>
-      </div>
-      <div style="display:flex;align-items:center;gap:2px;">
-        <div style="height:3px;width:{{ barAFGA }}px;background:#c9a84c;border-radius:2px 0 0 2px;"></div>
-        <div style="height:3px;width:{{ barBFGA }}px;background:#7ab3e0;border-radius:0 2px 2px 0;"></div>
+      <div class="bar-track">
+        <div class="bar-a" style="width:{{ barA3P }}px;"></div>
+        <div class="bar-b" style="width:{{ barB3P }}px;"></div>
       </div>
     </div>
 
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%;">
-      <div style="display:flex;align-items:baseline;gap:16px;">
-        <span style="font-family:'DM Mono',monospace;font-size:18px;color:#c9a84c;font-weight:500;">{{ playerAPPP }}</span>
-        <span style="font-size:9px;color:rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:0.14em;">PPP</span>
-        <span style="font-family:'DM Mono',monospace;font-size:18px;color:#7ab3e0;font-weight:500;">{{ playerBPPP }}</span>
+    <div class="stat-bar-cell">
+      <div class="bar-values">
+        <span class="bar-val-a">{{ playerAFGA }}<span class="stat-unit"> FGA</span></span>
+        <span class="bar-label">Volume</span>
+        <span class="bar-val-b">{{ playerBFGA }}<span class="stat-unit"> FGA</span></span>
       </div>
-      <div style="display:flex;align-items:center;gap:2px;">
-        <div style="height:3px;width:{{ barAPPP }}px;background:#c9a84c;border-radius:2px 0 0 2px;"></div>
-        <div style="height:3px;width:{{ barBPPP }}px;background:#7ab3e0;border-radius:0 2px 2px 0;"></div>
+      <div class="bar-track">
+        <div class="bar-a" style="width:{{ barAFGA }}px;"></div>
+        <div class="bar-b" style="width:{{ barBFGA }}px;"></div>
+      </div>
+    </div>
+
+    <div class="stat-bar-cell">
+      <div class="bar-values">
+        <span class="bar-val-a">{{ playerAPPP }}</span>
+        <span class="bar-label">PPP</span>
+        <span class="bar-val-b">{{ playerBPPP }}</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-a" style="width:{{ barAPPP }}px;"></div>
+        <div class="bar-b" style="width:{{ barBPPP }}px;"></div>
       </div>
     </div>
 
