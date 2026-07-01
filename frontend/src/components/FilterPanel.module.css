@@ -1,0 +1,213 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Toggle button row ───────────────────────────────── */
+.toggleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-bottom: 0;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  font-family: var(--font);
+  font-size: 0.8rem;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.18s var(--ease), color 0.18s var(--ease);
+}
+
+.toggle:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-hi);
+}
+
+.toggleOpen {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-hi);
+}
+
+.badge {
+  background: var(--color-a);
+  color: #000;
+  font-size: 0.6rem;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 1px 5px;
+  line-height: 1.4;
+}
+
+.clearInline {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font);
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s var(--ease);
+}
+.clearInline:hover { color: var(--text-hi); }
+
+/* ── Inline panel — part of normal flow ─────────────── */
+.panel {
+  background: var(--bg-lift);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.25rem 0.85rem;
+  margin-top: 0.5rem;
+  animation: slide-down 0.2s var(--ease) both;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem 2rem;
+}
+
+/* ── Individual filter row ───────────────────────────── */
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-size: 0.62rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.sliderRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--text-hi);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+  transition: transform 0.14s var(--ease);
+}
+.slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+.val {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--text-hi);
+  min-width: 54px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── Position chips ──────────────────────────────────── */
+.chips {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.chip {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  padding: 2px 9px;
+  cursor: pointer;
+  transition: border-color 0.15s var(--ease), color 0.15s var(--ease), background 0.15s var(--ease);
+}
+.chip:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--text-hi);
+}
+.chipOn {
+  border-color: var(--color-a);
+  color: var(--color-a);
+  background: rgba(var(--color-a-rgb), 0.1);
+}
+
+.posHint {
+  font-size: 0.62rem;
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+/* ── Draft row ───────────────────────────────────────── */
+.draftRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.checkLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.check { accent-color: var(--color-a); cursor: pointer; }
+
+/* ── Footer ──────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border);
+}
+
+.count {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.clearAll {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font);
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s var(--ease);
+}
+.clearAll:hover { color: var(--text-hi); }

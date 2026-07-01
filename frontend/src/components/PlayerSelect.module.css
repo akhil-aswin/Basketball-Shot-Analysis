@@ -1,0 +1,178 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.label {
+  font-size: 0.7rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Trigger button ──────────────────────────────────── */
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  background: var(--bg-lift);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-hi);
+  font-family: var(--font);
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.18s var(--ease);
+}
+
+.trigger:hover { border-color: rgba(255, 255, 255, 0.15); }
+
+.triggerOpen { border-color: rgba(255, 255, 255, 0.2); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+
+.slot-a .triggerOpen { border-color: var(--color-a); }
+.slot-b .triggerOpen { border-color: var(--color-b); }
+
+.triggerText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  transition: transform 0.18s var(--ease);
+}
+.chevronUp { transform: rotate(180deg); }
+
+/* ── Dropdown panel ──────────────────────────────────── */
+.panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg-lift);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  z-index: 200;
+  animation: slide-down 0.15s var(--ease) both;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.slot-a .panel { border-color: var(--color-a); border-top: none; }
+.slot-b .panel { border-color: var(--color-b); border-top: none; }
+
+/* ── Search input ────────────────────────────────────── */
+.searchWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.searchIcon { color: var(--text-muted); flex-shrink: 0; }
+
+.search {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text-hi);
+  font-family: var(--font);
+  font-size: 0.88rem;
+}
+
+.search::placeholder { color: var(--text-muted); }
+
+.clearSearch {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  cursor: pointer;
+  padding: 0 2px;
+  transition: color 0.15s var(--ease);
+}
+.clearSearch:hover { color: var(--text-hi); }
+
+/* ── List ────────────────────────────────────────────── */
+.list {
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+
+.list::-webkit-scrollbar { width: 4px; }
+.list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.48rem 0.85rem;
+  cursor: pointer;
+  transition: background 0.12s var(--ease);
+}
+
+.item:hover { background: rgba(255, 255, 255, 0.05); }
+
+.itemSelected { background: rgba(255, 255, 255, 0.06); }
+.slot-a .itemSelected { background: rgba(var(--color-a-rgb), 0.12); }
+.slot-b .itemSelected { background: rgba(var(--color-b-rgb), 0.12); }
+
+.itemDnp { opacity: 0.5; }
+
+.itemName {
+  font-size: 0.88rem;
+  color: var(--text-hi);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.heightTag {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.dnpTag {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  padding: 1px 5px;
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+}
+
+.empty {
+  padding: 0.75rem 0.85rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ── Footer count ────────────────────────────────────── */
+.listFooter {
+  padding: 0.35rem 0.85rem;
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+}

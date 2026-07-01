@@ -1,0 +1,77 @@
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.2rem 0;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.flip {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  font-weight: 500;
+  flex-shrink: 0;
+  transition: transform 0.2s var(--ease);
+}
+
+.avatar:hover { transform: scale(1.08); }
+
+.avatar-a {
+  background: rgba(var(--color-a-rgb), 0.12);
+  border: 1px solid rgba(var(--color-a-rgb), 0.4);
+  color: var(--color-a);
+  animation: pulse-a 3s ease-in-out infinite;
+}
+
+.avatar-b {
+  background: rgba(var(--color-b-rgb), 0.12);
+  border: 1px solid rgba(var(--color-b-rgb), 0.4);
+  color: var(--color-b);
+  animation: pulse-b 3s ease-in-out infinite;
+}
+
+.info { min-width: 0; }
+
+.playerName {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-hi);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.teamName {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 1px;
+  font-family: var(--mono);
+}
+
+.vsBadge {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  flex-shrink: 0;
+}
