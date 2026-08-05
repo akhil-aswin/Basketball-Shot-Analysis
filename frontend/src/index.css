@@ -2,16 +2,16 @@
 :root {
   --bg:           #08080f;
   --bg-lift:      #0e1117;
-  --color-a:      #ff5c35;
-  --color-a-rgb:  255, 92, 53;
-  --color-b:      #00d4ff;
-  --color-b-rgb:  0, 212, 255;
+  --color-a:      #FF0F05;
+  --color-a-rgb:  255, 15, 5;
+  --color-b:      #0046FF;
+  --color-b-rgb:  0, 70, 255;
   --border:       rgba(255, 255, 255, 0.07);
   --text-hi:      #f0f0f5;
   --text-muted:   rgba(255, 255, 255, 0.38);
   --text-faint:   rgba(255, 255, 255, 0.25);
   --text-dim:     rgba(255, 255, 255, 0.3);
-  --font:         'Space Grotesk', sans-serif;
+  --font:         'DM Sans', sans-serif;
   --mono:         'DM Mono', monospace;
   --ease:         cubic-bezier(0.4, 0, 0.2, 1);
 }

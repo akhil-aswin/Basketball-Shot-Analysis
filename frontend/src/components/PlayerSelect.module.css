@@ -9,7 +9,8 @@
   font-size: 0.7rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-hi);
+  font-weight: 700;
 }
 
 /* ── Trigger button ──────────────────────────────────── */
@@ -116,6 +117,12 @@
 
 .list::-webkit-scrollbar { width: 4px; }
 .list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+.itemLogo {
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
 
 .item {
   display: flex;

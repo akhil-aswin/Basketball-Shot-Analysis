@@ -10,6 +10,7 @@ function activeCount(f, d) {
   if (f.height[0] > d.height[0] || f.height[1] < d.height[1]) n++
   if (f.weight[0] > d.weight[0] || f.weight[1] < d.weight[1]) n++
   if (f.positions.length > 0)                                   n++
+  if (f.archetypes.length > 0)                                  n++
   if (f.exp[0]    > d.exp[0]    || f.exp[1]    < d.exp[1])    n++
   if (f.draft[0]  > d.draft[0]  || f.draft[1]  < d.draft[1])  n++
   if (!f.includeUndrafted)                                      n++
@@ -28,6 +29,13 @@ export default function FilterPanel({ open, onToggle, filters, onChange, default
       ? filters.positions.filter(p => p !== pos)
       : [...filters.positions, pos]
     set('positions', next)
+  }
+
+  function toggleArchetype(a) {
+    const next = filters.archetypes.includes(a)
+      ? filters.archetypes.filter(x => x !== a)
+      : [...filters.archetypes, a]
+    set('archetypes', next)
   }
 
   return (
@@ -91,6 +99,23 @@ export default function FilterPanel({ open, onToggle, filters, onChange, default
                 )}
               </div>
             </div>
+
+            {defaults.archetypeOptions?.length > 0 && (
+              <div className={`${styles.row} ${styles.rowFull}`}>
+                <label className={styles.label}>Archetype</label>
+                <div className={styles.chips}>
+                  {defaults.archetypeOptions.map(a => (
+                    <button
+                      key={a}
+                      className={`${styles.chip} ${filters.archetypes.includes(a) ? styles.chipOn : ''}`}
+                      onClick={() => toggleArchetype(a)}
+                    >
+                      {a}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className={styles.row}>
               <label className={styles.label}>Experience (yrs)</label>

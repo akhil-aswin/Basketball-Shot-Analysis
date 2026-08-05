@@ -1,0 +1,43 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.label {
+  font-size: 0.7rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-hi);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.selectWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.select {
+  appearance: none;
+  background: var(--bg-lift);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-hi);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  padding: 0.35rem 2rem 0.35rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.18s var(--ease);
+}
+
+.select:hover   { border-color: rgba(255,255,255,0.18); }
+.select:focus   { outline: none; border-color: rgba(255,255,255,0.25); }
+
+.chevron {
+  position: absolute;
+  right: 0.6rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}

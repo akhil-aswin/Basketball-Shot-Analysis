@@ -1,6 +1,7 @@
 import HeroSection from './HeroSection.jsx'
 import ChartPanel from './ChartPanel.jsx'
 import StatBarRow from './StatBarRow.jsx'
+import SimilarPlayers from './SimilarPlayers.jsx'
 import styles from './CompareCard.module.css'
 
 function barWidths(a, b, maxPx = 56) {
@@ -9,7 +10,7 @@ function barWidths(a, b, maxPx = 56) {
   return [Math.round((a / max) * maxPx), Math.round((b / max) * maxPx)]
 }
 
-export default function CompareCard({ dataA, dataB, loadingA, loadingB }) {
+export default function CompareCard({ dataA, dataB, loadingA, loadingB, seasonA, seasonB }) {
   const ready = dataA && dataB
 
   const fgWA  = ready ? barWidths(dataA.stats.fg, dataB.stats.fg) : [0, 0]
@@ -54,6 +55,8 @@ export default function CompareCard({ dataA, dataB, loadingA, loadingB }) {
           />
         </div>
       )}
+
+      {seasonA === seasonB && <SimilarPlayers dataA={dataA} dataB={dataB} />}
     </div>
   )
 }

@@ -77,6 +77,10 @@
   gap: 0.9rem 2rem;
 }
 
+.rowFull {
+  grid-column: 1 / -1;
+}
+
 /* ── Individual filter row ───────────────────────────── */
 .row {
   display: flex;
@@ -88,7 +92,8 @@
   font-size: 0.62rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-hi);
+  font-weight: 700;
 }
 
 .sliderRow {

@@ -89,6 +89,15 @@ export default function PlayerSelect({ players, selected, onChange, label, slot 
                 className={`${styles.item} ${selected?.id === p.id ? styles.itemSelected : ''} ${p.dnp ? styles.itemDnp : ''}`}
                 onClick={() => pick(p)}
               >
+                {p.team_id && (
+                  <img
+                    src={`https://cdn.nba.com/logos/nba/${p.team_id}/global/L/logo.svg`}
+                    className={styles.itemLogo}
+                    width={18} height={18}
+                    alt=""
+                    onError={e => { e.target.style.display = 'none' }}
+                  />
+                )}
                 <span className={styles.itemName}>{p.name}</span>
                 {p.dnp
                   ? <span className={styles.dnpTag}>DNP</span>
