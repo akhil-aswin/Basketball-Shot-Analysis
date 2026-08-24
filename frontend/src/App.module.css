@@ -23,10 +23,12 @@
 }
 
 .title {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.75rem;
+  font-weight: 800;
+  font-family: var(--display);
   color: var(--text-hi);
-  letter-spacing: 0.01em;
+  letter-spacing: -0.02em;
+  line-height: 1;
 }
 
 .selectors {

@@ -66,6 +66,7 @@
 .playerName {
   font-size: 1.05rem;
   font-weight: 700;
+  font-family: var(--font);
   color: var(--text-hi);
   white-space: nowrap;
   overflow: hidden;

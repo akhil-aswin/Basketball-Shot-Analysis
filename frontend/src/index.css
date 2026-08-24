@@ -2,17 +2,18 @@
 :root {
   --bg:           #08080f;
   --bg-lift:      #0e1117;
-  --color-a:      #FF0F05;
-  --color-a-rgb:  255, 15, 5;
-  --color-b:      #0046FF;
-  --color-b-rgb:  0, 70, 255;
+  --color-a:      #D94040;
+  --color-a-rgb:  217, 64, 64;
+  --color-b:      #3A6BC4;
+  --color-b-rgb:  58, 107, 196;
   --border:       rgba(255, 255, 255, 0.07);
   --text-hi:      #f0f0f5;
   --text-muted:   rgba(255, 255, 255, 0.38);
   --text-faint:   rgba(255, 255, 255, 0.25);
   --text-dim:     rgba(255, 255, 255, 0.3);
-  --font:         'DM Sans', sans-serif;
-  --mono:         'DM Mono', monospace;
+  --font:         'Plus Jakarta Sans', sans-serif;
+  --display:      'Syne', sans-serif;
+  --mono:         'Plus Jakarta Sans', sans-serif;
   --ease:         cubic-bezier(0.4, 0, 0.2, 1);
 }
 

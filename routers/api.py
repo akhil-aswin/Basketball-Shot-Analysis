@@ -6,7 +6,7 @@ from similarity import get_archetype, get_similar
 
 router = APIRouter()
 
-_COLORS = {'a': '#FF0F05', 'b': '#0046FF'}
+_COLORS = {'a': '#D94040', 'b': '#3A6BC4'}
 
 
 @router.get('/seasons')

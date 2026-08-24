@@ -8,7 +8,7 @@ import numpy as np
 from matplotlib.patches import Arc, Circle, Rectangle
 
 _BG = '#08080f'
-_COURT_COLOR = (0.45, 0.5, 0.82, 0.75)
+_COURT_COLOR = (0.92, 0.90, 0.85, 0.55)
 
 
 def _draw_court(ax, lw=1.5):
