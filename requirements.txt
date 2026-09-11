@@ -1,5 +1,8 @@
+fastapi
 matplotlib
 nba_api
 numpy
 pandas
+scikit-learn
 streamlit
+uvicorn[standard]

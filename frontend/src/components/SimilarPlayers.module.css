@@ -1,0 +1,102 @@
+.wrap {
+  padding: 0 2rem 2rem;
+  animation: slide-up 0.4s var(--ease) 0.2s both;
+}
+
+.heading {
+  font-size: 0.7rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-hi);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.colLabel {
+  font-size: 0.72rem;
+  font-family: var(--mono);
+  color: var(--text-hi);
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+/* ── List ──────────────────────────────────────────────── */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 18px 1fr 80px 34px;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  background: var(--bg-lift);
+  border: 1px solid var(--border);
+  transition: border-color 0.15s var(--ease);
+}
+
+.list-a .row:hover { border-color: rgba(var(--color-a-rgb), 0.3); }
+.list-b .row:hover { border-color: rgba(var(--color-b-rgb), 0.3); }
+
+.rank {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  text-align: center;
+}
+
+.name {
+  font-size: 0.82rem;
+  color: var(--text-hi);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.barTrack {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--text-muted);
+  transform-origin: left;
+  animation: bar-grow 0.5s var(--ease) 0.3s both;
+}
+
+.list-a .barFill { background: var(--color-a); }
+.list-b .barFill { background: var(--color-b); }
+
+.score {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.empty {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  font-style: italic;
+  padding: 0.5rem 0;
+}

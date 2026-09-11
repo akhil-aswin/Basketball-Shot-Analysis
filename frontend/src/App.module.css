@@ -1,0 +1,47 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  animation: fade-in 0.4s var(--ease) both;
+}
+
+.header {
+  padding: 1.25rem 2rem 0;
+  flex-shrink: 0;
+  animation: slide-down 0.45s var(--ease) 0.05s both;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.filterRow {
+  margin-top: 0.25rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  font-family: var(--display);
+  color: var(--text-hi);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.selectors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 0.5rem 2rem 0.75rem;
+  flex-shrink: 0;
+  animation: slide-down 0.45s var(--ease) 0.1s both;
+}
+
+.selectorCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
